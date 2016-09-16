@@ -1,0 +1,7 @@
+/composer.phar
+/vendor/
+/app/userdb.json
+local_options.php
+*.pem
+.vagrant
+.idea
