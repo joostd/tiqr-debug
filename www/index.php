@@ -28,8 +28,8 @@ if( isset($_GET['register']) ) {
             break;
         case Tiqr_Service::ENROLLMENT_STATUS_INITIALIZED:
             error_log("[$sid] status is $status (initialized)");
-            echo "<script>alert('scan the QR first, retrying');</script>";
             session_regenerate_id();
+            echo "<script>alert('scan the QR first, retrying');</script>";
             break;
         case Tiqr_Service::ENROLLMENT_STATUS_RETRIEVED:
             error_log("[$sid] status is $status (retrieved)");

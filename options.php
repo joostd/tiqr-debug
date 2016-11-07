@@ -28,12 +28,16 @@ if( file_exists(dirname(__FILE__) . "/local_options.php") ) {
 $autoloader = Tiqr_AutoLoader::getInstance($options); // needs {tiqr,zend,phpqrcode}.path
 $autoloader->setIncludePath();
 
-function base() {
-    $proto = "http://";
-    if( array_key_exists('HTTP_X_FORWARDED_HOST', $_SERVER) ) {
+function base()
+{
+    $proto = "http"; // default
+    if (array_key_exists('HTTP_X_FORWARDED_PROTO', $_SERVER)) {
+        $proto = $_SERVER['HTTP_X_FORWARDED_PROTO'];
+    }
+    if (array_key_exists('HTTP_X_FORWARDED_HOST', $_SERVER)) {
         $host = $_SERVER['HTTP_X_FORWARDED_HOST'];
-        $proto = "https://";
-    } else
-	    $host = $_SERVER['HTTP_HOST'];
-    return $proto . $host;
+    } else {
+        $host = $_SERVER['HTTP_HOST'];
+    }
+    return $proto . "://" . $host;
 }

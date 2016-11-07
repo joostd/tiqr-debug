@@ -23,7 +23,7 @@ function curl_post($url, array $post = NULL, array $options = array())
         #CURLOPT_FORBID_REUSE => 1,
         CURLOPT_TIMEOUT => 4,
         CURLOPT_POSTFIELDS => http_build_query($post),
-        CURLOPT_HTTPHEADER => array( 'X-TIQR-PROTOCOL-VERSION: 2'),
+        CURLOPT_HTTPHEADER => array( 'X-TIQR-Protocol-Version: 2'),
     );
 
     $ch = curl_init();
