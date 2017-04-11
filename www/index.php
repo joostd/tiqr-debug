@@ -79,9 +79,13 @@ if( isset($_GET['register']) ) {
     $notificationType = $userStorage->getNotificationType($userdata);
     $notificationAddress = $userStorage->getNotificationAddress($userdata);
     error_log("type [$notificationType], address [$notificationAddress]");
-    $translatedAddress = $tiqr->translateNotificationAddress($notificationType, $notificationAddress);
-    error_log("translated address [$translatedAddress]");
-    if ($translatedAddress) {
+    if (isset($notificationAddress)) {
+        $translatedAddress = $tiqr->translateNotificationAddress($notificationType, $notificationAddress);
+        error_log("translated address [$translatedAddress]");
+    } else {
+        error_log("No notificationAddress received for user [$userdata]");
+    }
+    if (isset($translatedAddress)) {
             if ($tiqr->sendAuthNotification($sessionKey, $notificationType, $translatedAddress)) {
                 error_log("sent notification of type [$notificationType] to [$translatedAddress]");
             } else {

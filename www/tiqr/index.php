@@ -21,7 +21,7 @@ function metadata($key)
     return $metadata;
 }
 
-function login( $sessionKey, $userId, $response )
+function login( $sessionKey, $userId, $response, $notificationType, $notificationAddress)
 {
     global $options;
     $userStorage = Tiqr_UserStorage::getStorage($options['userstorage']['type'], $options['userstorage']);
@@ -32,6 +32,12 @@ function login( $sessionKey, $userId, $response )
     switch( $result ) {
         case Tiqr_Service::AUTH_RESULT_AUTHENTICATED:
             //echo 'AUTHENTICATED';
+            if( isset($notificationType) ) {
+                $userStorage->setNotificationType($userId, $notificationType);
+                if( isset($notificationAddress) ) {
+                    $userStorage->setNotificationAddress($userId, $notificationAddress);
+                }
+            }
             return "OK";
             break;
         case Tiqr_Service::AUTH_RESULT_INVALID_CHALLENGE:
@@ -108,8 +114,10 @@ switch( $_SERVER['REQUEST_METHOD'] ) {
                 $sessionKey = $_POST['sessionKey'];
                 $userId = $_POST['userId'];
                 $response = $_POST['response'];
+                $notificationType = $_POST['notificationType'];
+                $notificationAddress = $_POST['notificationAddress'];
                 error_log("received authentication response ($response) from user $userId for session $sessionKey");
-                $result = login( $sessionKey, $userId, $response );
+                $result = login( $sessionKey, $userId, $response, $notificationType, $notificationAddress );
                 error_log("response $result");
                 echo $result;
                 break;
