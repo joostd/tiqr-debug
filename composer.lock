@@ -53,12 +53,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SURFnet/tiqr-server-libphp.git",
-                "reference": "76b7524355951c59b005117134c45cfa6396833b"
+                "reference": "98574f39e48b3ccd03f38ab36a65b789e0375062"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SURFnet/tiqr-server-libphp/zipball/76b7524355951c59b005117134c45cfa6396833b",
-                "reference": "76b7524355951c59b005117134c45cfa6396833b",
+                "url": "https://api.github.com/repos/SURFnet/tiqr-server-libphp/zipball/98574f39e48b3ccd03f38ab36a65b789e0375062",
+                "reference": "98574f39e48b3ccd03f38ab36a65b789e0375062",
                 "shasum": ""
             },
             "require": {
@@ -72,7 +72,7 @@
                 "BSD-3-Clause"
             ],
             "description": "php library for tiqr authentication.",
-            "time": "2015-09-17 16:29:50"
+            "time": "2016-11-08 11:12:13"
         },
         {
             "name": "zendframework/zendframework1",
